@@ -97,6 +97,7 @@ export default function Home() {
           />
           Go to nextjs.org →
         </a>
+        <p className="text-primary">HOLA</p>
       </footer>
     </div>
   );
