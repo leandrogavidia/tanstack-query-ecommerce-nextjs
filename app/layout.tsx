@@ -1,7 +1,10 @@
-import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
+import { ReactNode } from "react";
+
 import Providers from './providers';
+
+import type { Metadata } from "next";
+import "./globals.css";
 
 const montserrat = localFont({
   src: [
@@ -107,7 +110,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="es">
