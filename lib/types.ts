@@ -10,3 +10,8 @@ export interface Product {
         count: number
     }
   }
+
+  export interface Category {
+    id: string
+    name: string
+  }

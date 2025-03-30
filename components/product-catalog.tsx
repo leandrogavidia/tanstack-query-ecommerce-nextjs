@@ -14,7 +14,7 @@ export default function ProductCatalog() {
     const searchParams = useSearchParams()
 
     const category = searchParams.get('categoria') || ""
-    const page = Number(searchParams.get('pagina')) || 1
+    const page = Number(searchParams.get('page')) || 1
 
     const limit = 8
 
@@ -61,15 +61,25 @@ export default function ProductCatalog() {
         )
     }
 
+    console.log(category)
+
     return (
         <div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {products.map((product: Product) => (
-                    <ProductCard key={product.id} product={product} />
-                ))}
+                {
+                    category ? (
+                        products.filter((product: Product) => product.category === category).map((product: Product) => (
+                            <ProductCard key={product.id} product={product} />
+                        ))
+                    ) : (
+                        products.map((product: Product) => (
+                            <ProductCard key={product.id} product={product} />
+                        ))
+                    )
+                }
+
             </div>
 
-            {/* Pagination */}
             {totalPages > 1 && (
                 <div className="flex justify-center mt-12">
                     <div className="flex space-x-2">
