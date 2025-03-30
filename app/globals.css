@@ -5,10 +5,10 @@
 
 :root {
 
-  --primary: #FFB22C;
-  --secondary: #854836;
+  --primary: oklch(0.228 0.225 286.46);
+  --secondary: oklch(0.564 0.118 279.76);
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: oklch(0.941 0.005 312.83);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -48,10 +48,6 @@
   --font-montserrat: var(--font-montserrat);
 }
 
-body {
-  font-family: Montserrat, Arial, Helvetica, sans-serif;
-}
-
 .dark {
 
   --background: oklch(0.145 0 0);
@@ -66,11 +62,11 @@ body {
 
   --popover-foreground: oklch(0.985 0 0);
 
-  --primary: oklch(0.922 0 0);
+  --primary: oklch(0.228 0.225 286.46);
 
   --primary-foreground: oklch(0.205 0 0);
 
-  --secondary: oklch(0.269 0 0);
+  --secondary: oklch(0.564 0.118 279.76);
 
   --secondary-foreground: oklch(0.985 0 0);
 
@@ -197,4 +193,22 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+html {
+  transition: color 350ms ease, background-color 350ms ease;
+}
+
+html * {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: ease;
+  transition-duration: 350ms;
+}
+
+.no-theme-transition {
+  transition: none !important;
+}
+
+body {
+  font-family: Montserrat, Arial, Helvetica, sans-serif;
 }

@@ -1,7 +1,11 @@
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
+import { Suspense } from "react"
 
+import FeaturedProducts from "@/components/featured-products"
+import ProductsLoading from "@/components/products-loading"
 import { Button } from "@/components/ui/button"
+
 
 export default function Home() {
   return (
@@ -21,6 +25,20 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <section className="mb-16">
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-3xl font-bold">Productos destacados</h2>
+          <Button asChild variant="outline">
+            <Link href="/productos">Ver todos</Link>
+          </Button>
+        </div>
+        <Suspense fallback={<ProductsLoading count={4} />}>
+          <FeaturedProducts />
+        </Suspense>
+      </section>
+
+
     </div>
   )
 }

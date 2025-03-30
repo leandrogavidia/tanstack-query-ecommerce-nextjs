@@ -83,7 +83,7 @@ export default function ProductDetail({ product }: { product: Product }) {
                                 <RadioGroupItem value={size} id={`size-${size}`} className="peer sr-only" />
                                 <Label
                                     htmlFor={`size-${size}`}
-                                    className="flex h-10 w-full cursor-pointer items-center justify-center rounded-md border text-sm uppercase peer-data-[state=checked]:bg-primary peer-data-[state=checked]:text-primary-foreground"
+                                    className="flex h-10 w-full cursor-pointer items-center justify-center rounded-md border text-sm uppercase peer-data-[state=checked]:bg-primary "
                                 >
                                     {size}
                                 </Label>
@@ -92,9 +92,8 @@ export default function ProductDetail({ product }: { product: Product }) {
                     </RadioGroup>
                 </div>
 
-                {/* Add to Cart and Favorite */}
                 <div className="flex space-x-2">
-                    <Button className="flex-1" onClick={handleAddToCart} disabled={addToCartMutation.isPending}>
+                    <Button className="flex-1 text-white" onClick={handleAddToCart} disabled={addToCartMutation.isPending}>
                         {addToCartMutation.isPending ? (
                             <div className="flex items-center">
                                 <div className="h-4 w-4 border-2 border-current border-t-transparent animate-spin rounded-full mr-2"></div>

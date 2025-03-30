@@ -39,3 +39,12 @@ export const fetchProducts = async () => {
     const products = data.filter((product: Product) => product.category === category && product.id !== productId);
     return products.slice(0, 4);
   }
+
+  export const fetchFeaturedProducts = async (): Promise<Product[]> => {
+    let url = `https://fakestoreapi.com/products/`;
+
+    const { data } = await axios.get(url);
+
+    const products = data.filter((product: Product) => product.rating.rate >= 4.0);
+    return products;
+  }
