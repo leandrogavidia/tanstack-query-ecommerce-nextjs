@@ -1,9 +1,12 @@
 import localFont from "next/font/local";
 import { ReactNode } from "react";
 
+import Header from "@/components/header"
+
 import Providers from './providers';
 
 import type { Metadata } from "next";
+
 import "./globals.css";
 
 const montserrat = localFont({
@@ -118,6 +121,7 @@ export default function RootLayout({
         className={`${montserrat.variable} antialiased`}
       >
         <Providers>
+          <Header />
           {children}
         </Providers>
       </body>

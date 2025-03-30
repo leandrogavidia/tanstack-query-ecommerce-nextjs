@@ -1,18 +1,42 @@
 "use client"
 
-import { Star } from "lucide-react"
+import { useMutation } from "@tanstack/react-query"
+import { ShoppingCart, Star } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
 
+import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { formatCurrencyMXN } from "@/lib/utils"
 
+import { useCart } from "./providers/cart-provider"
+
 import type { Product } from "@/lib/types"
+
 
 export default function ProductDetail({ product }: { product: Product }) {
     const [selectedSize, setSelectedSize] = useState<string>("m")
+    const { addItem } = useCart()
+
+    const addToCartMutation = useMutation({
+        mutationFn: () => {
+            return new Promise<void>((resolve) => setTimeout(resolve, 500))
+        },
+        onSuccess: () => {
+            addItem({
+                id: product.id,
+                title: product.title,
+                price: product.price,
+                image: product.image,
+            })
+        },
+    })
+
+    const handleAddToCart = () => {
+        addToCartMutation.mutate()
+    }
 
     return (
         <div className="grid md:grid-cols-2 gap-8">
@@ -68,9 +92,23 @@ export default function ProductDetail({ product }: { product: Product }) {
                     </RadioGroup>
                 </div>
 
+                {/* Add to Cart and Favorite */}
+                <div className="flex space-x-2">
+                    <Button className="flex-1" onClick={handleAddToCart} disabled={addToCartMutation.isPending}>
+                        {addToCartMutation.isPending ? (
+                            <div className="flex items-center">
+                                <div className="h-4 w-4 border-2 border-current border-t-transparent animate-spin rounded-full mr-2"></div>
+                                Añadiendo...
+                            </div>
+                        ) : (
+                            <>
+                                <ShoppingCart className="mr-2 h-4 w-4" />
+                                Añadir al carrito
+                            </>
+                        )}
+                    </Button>
+                </div>
 
-
-                {/* Product Details Tabs */}
                 <Tabs defaultValue="description" className="mt-8">
                     <TabsList className="w-full">
                         <TabsTrigger value="description" className="flex-1">
