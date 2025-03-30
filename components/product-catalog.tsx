@@ -20,10 +20,10 @@ export default function ProductCatalog() {
 
     const { data, isLoading, isError, error } = useQuery({
         queryKey: ["fakeStoreProducts", { category, page, limit }],
-        queryFn: () => fetchProducts(),
+        queryFn: () => fetchProducts({ category, page, limit }),
     })
 
-    const products = data || []
+    const products = data?.products || []
     const totalPages = data?.totalPages || 1
 
     const handlePageChange = (newPage: number) => {

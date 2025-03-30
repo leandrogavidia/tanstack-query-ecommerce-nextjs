@@ -10,12 +10,16 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { formatCurrencyMXN } from "@/lib/utils"
 
 import { useCart } from "./providers/cart-provider"
+import { useFavorites } from "./providers/favorites-provider"
 
 import type { Product } from "@/lib/types"
 
 export default function ProductCard({ product }: { product: Product }) {
     const [isLoading, setIsLoading] = useState(true)
     const { addItem } = useCart()
+    const { toggleFavorite, isFavorite } = useFavorites()
+    const isFav = isFavorite(product.id)
+
     const handleAddToCart = () => {
         addItem({
             id: product.id,
@@ -44,8 +48,9 @@ export default function ProductCard({ product }: { product: Product }) {
                     variant="secondary"
                     size="icon"
                     className="absolute top-2 right-2 h-8 w-8 rounded-full opacity-70 hover:opacity-100"
+                    onClick={() => toggleFavorite(product)}
                 >
-                    <Heart className={`h-4 w-4`} />
+                    <Heart className={`h-4 w-4 ${isFav ? "fill-destructive text-destructive" : ""}`} />
                     <span className="sr-only">Añadir a favoritos</span>
                 </Button>
 

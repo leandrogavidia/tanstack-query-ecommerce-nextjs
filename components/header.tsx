@@ -1,6 +1,6 @@
 "use client"
 
-import { ShoppingCart, Menu, Search, Sun, Moon } from "lucide-react"
+import { ShoppingCart, Menu, Search, Sun, Moon, Heart } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useTheme } from "next-themes"
@@ -40,14 +40,12 @@ export default function Header() {
         return () => window.removeEventListener("scroll", handleScroll)
     }, [])
 
-    // After mounting, we can safely show the theme toggle
     useEffect(() => {
         setMounted(true)
     }, [])
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault()
-        // Implement search functionality
         console.log("Search for:", searchQuery)
     }
 
@@ -63,12 +61,10 @@ export default function Header() {
             >
                 <div className="container mx-auto px-4">
                     <div className="flex h-16 items-center justify-between">
-                        {/* Logo */}
                         <Link href="/" className="flex items-center space-x-2">
                             <span className="text-2xl font-bold text-primary">NextStore</span>
                         </Link>
 
-                        {/* Desktop Navigation */}
                         <nav className="hidden md:flex items-center space-x-6">
                             {navItems.map((item) => (
                                 <Link
@@ -103,6 +99,13 @@ export default function Header() {
                                     <span className="sr-only">Cambiar tema</span>
                                 </Button>
                             )}
+
+                            <Button variant="ghost" size="icon" asChild>
+                                <Link href="/mi-cuenta?tab=favorites">
+                                    <Heart className="h-5 w-5" />
+                                    <span className="sr-only">Favoritos</span>
+                                </Link>
+                            </Button>
 
                             <Button variant="ghost" size="icon" className="relative" onClick={() => setIsOpen(true)}>
                                 <ShoppingCart className="h-5 w-5" />

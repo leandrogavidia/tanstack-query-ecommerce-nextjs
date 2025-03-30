@@ -1,5 +1,6 @@
 import axios from "axios";
 
+import { config } from "./config";
 import { Category, Product } from "./types";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
@@ -11,11 +12,33 @@ const categories: Category[] = [
   { id: "women's clothing", name: "women's clothing" },
 ]
 
-export const fetchProducts = async () => {
-    let url = "https://fakestoreapi.com/products";
+export const fetchProducts = async ({
+  page,
+  limit,
+  category
+}: {
+  page: number,
+  limit: number,
+  category: string
+}) => {
+    let url = `${config.apiPath}/products`;
 
-    const { data } = await axios.get(url);
-    return data;
+    const { data: products } = await axios.get(url);
+
+    let filteredProducts = products;
+    if (category) {
+      filteredProducts = products.filter((product: Product) => product.category === category);
+    }
+  
+    const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
+    const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
+    
+    return {
+      products: paginatedProducts,
+      totalPages: Math.ceil(filteredProducts.length / limit),
+      totalItems: filteredProducts.length
+    };
   };
 
   export async function getCategories(): Promise<Category[]> {
@@ -25,14 +48,14 @@ export const fetchProducts = async () => {
   }
 
   export const fetchProduct = async (id: string): Promise<Product> => {
-    let url = `https://fakestoreapi.com/products/${id}`;
+    let url = `${config.apiPath}/products/${id}`;
 
     const { data } = await axios.get(url);
     return data;
   };
 
   export const fetchRelatedProducts = async (category: string, productId: number): Promise<Product[]> => {
-    let url = `https://fakestoreapi.com/products/`;
+    let url = `${config.apiPath}/products/`;
 
     const { data } = await axios.get(url);
 
@@ -41,7 +64,7 @@ export const fetchProducts = async () => {
   }
 
   export const fetchFeaturedProducts = async (): Promise<Product[]> => {
-    let url = `https://fakestoreapi.com/products/`;
+    let url = `${config.apiPath}/products/`;
 
     const { data } = await axios.get(url);
 
