@@ -22,3 +22,17 @@ export interface Product {
     email: string
   }
   
+export interface CartItem {
+  id: string
+  title: string
+  price: number
+  image: string
+  quantity: number
+}
+  export interface Order {
+    id: string
+    date: string
+    status: string
+    total: number
+    items: CartItem[]
+  }

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { config } from "./config";
-import { Category, Product } from "./types";
+import { Category, Order, Product } from "./types";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
@@ -11,6 +11,21 @@ const categories: Category[] = [
   { id: "electronics", name: "electronics" },
   { id: "women's clothing", name: "women's clothing" },
 ]
+
+const orders: Order[] = Array.from({ length: 5 }).map((_, i) => ({
+  id: `order-${i + 1}`,
+  date: new Date(Date.now() - i * 86400000 * 7).toISOString(),
+  status: ["Entregado", "En camino", "Procesando", "Cancelado"][Math.floor(Math.random() * 4)],
+  total: Math.floor(Math.random() * 200) + 50,
+  // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+  items: Array.from({ length: Math.floor(Math.random() * 3) + 1 }).map((_, j) => ({
+    id: `product-${Math.floor(Math.random() * 20) + 1}`,
+    title: `Producto ${Math.floor(Math.random() * 20) + 1}`,
+    price: Math.floor(Math.random() * 100) + 20,
+    image: `/placeholder.svg?height=400&width=400&text=Producto+${Math.floor(Math.random() * 20) + 1}`,
+    quantity: Math.floor(Math.random() * 3) + 1,
+  })),
+}))
 
 export const fetchProducts = async ({
   page,
@@ -71,3 +86,10 @@ export const fetchProducts = async ({
     const products = data.filter((product: Product) => product.rating.rate >= 4.0);
     return products;
   }
+
+  export async function getUserOrders(): Promise<Order[]> {
+    await delay(600)
+  
+    return orders
+  }
+  

@@ -1,6 +1,6 @@
 "use client"
 
-import { ShoppingCart, Menu, Search, Sun, Moon, Heart } from "lucide-react"
+import { ShoppingCart, Menu, Search, Sun, Moon, Heart, User } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useTheme } from "next-themes"
@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
 import { useCart } from "./providers/cart-provider"
+import { useAuth } from "./providers/use-auth"
 
 import type React from "react"
 
@@ -30,6 +31,7 @@ export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false)
     const [searchQuery, setSearchQuery] = useState("")
     const [mounted, setMounted] = useState(false)
+    const { isAuthenticated } = useAuth()
 
     useEffect(() => {
         const handleScroll = () => {
@@ -118,6 +120,13 @@ export default function Header() {
                                     </Badge>
                                 )}
                                 <span className="sr-only">Carrito</span>
+                            </Button>
+
+                            <Button variant="ghost" size="icon" asChild>
+                                <Link href={isAuthenticated ? "/mi-cuenta" : "/login"}>
+                                    <User className="h-5 w-5" />
+                                    <span className="sr-only">Mi cuenta</span>
+                                </Link>
                             </Button>
 
                             <Sheet>

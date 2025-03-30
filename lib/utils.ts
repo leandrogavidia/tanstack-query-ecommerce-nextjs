@@ -11,3 +11,12 @@ export function formatCurrencyMXN(amount: number): string {
     currency: "MXN",
   }).format(amount);
 }
+
+export function formatDate(dateString: string): string {
+  return new Intl.DateTimeFormat("es-MX", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(new Date(dateString))
+}
+
