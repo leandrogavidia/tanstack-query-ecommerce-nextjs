@@ -2,9 +2,12 @@
 "use client"
 
 
+import { useRouter } from "next/navigation"
 import { createContext, useContext, useEffect, useState } from "react"
 
 import { useToast } from "@/hooks/use-toast"
+
+import { useAuth } from "./use-auth"
 
 import type { Product } from "@/lib/types"
 import type React from "react"
@@ -20,6 +23,8 @@ const FavoritesContext = createContext<FavoritesContextType | undefined>(undefin
 
 export function FavoritesProvider({ children }: { children: React.ReactNode }) {
     const [favorites, setFavorites] = useState<Product[]>([])
+    const { isAuthenticated } = useAuth()
+    const { push } = useRouter()
     const { toast } = useToast()
 
     useEffect(() => {
@@ -38,6 +43,10 @@ export function FavoritesProvider({ children }: { children: React.ReactNode }) {
     }, [favorites])
 
     const toggleFavorite = (product: Product) => {
+        if (!isAuthenticated) {
+            push("/login?redirect=/mi-cuenta?tab=favoritos")
+            return
+        }
         setFavorites((prevFavorites) => {
             const isAlreadyFavorite = prevFavorites.some((fav) => fav.id === product.id)
 
@@ -58,6 +67,7 @@ export function FavoritesProvider({ children }: { children: React.ReactNode }) {
     }
 
     const isFavorite = (productId: number) => {
+        if (!isAuthenticated) return false;
         return favorites.some((fav) => fav.id === Number(productId))
     }
 
