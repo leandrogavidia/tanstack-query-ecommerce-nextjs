@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { Suspense } from "react"
 
+import ChatBot from "@/components/chat-bot"
 import FeaturedProducts from "@/components/featured-products"
 import ProductsLoading from "@/components/products-loading"
 import { Button } from "@/components/ui/button"
@@ -26,6 +27,40 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="mb-16 grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h2 className="text-3xl font-bold mb-4">¿Necesitas ayuda?</h2>
+          <p className="text-lg mb-6 text-muted-foreground">
+            Nuestro asistente virtual está disponible 24/7 para responder tus preguntas sobre productos, envíos,
+            devoluciones o cualquier otra consulta que tengas.
+          </p>
+          <div className="space-y-4">
+            <div className="flex items-center space-x-2">
+              <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                <span className="font-bold">1</span>
+              </div>
+              <p>Pregunta sobre nuestros productos y servicios</p>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                <span className="font-bold">2</span>
+              </div>
+              <p>Obtén recomendaciones personalizadas</p>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                <span className="font-bold">3</span>
+              </div>
+              <p>Resuelve dudas sobre tu pedido</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="h-[500px]">
+          <ChatBot embedded={true} className="h-full" />
+        </div>
+      </section>
+
       <section className="mb-16">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-3xl font-bold">Productos destacados</h2>
@@ -37,8 +72,6 @@ export default function Home() {
           <FeaturedProducts />
         </Suspense>
       </section>
-
-
     </div>
   )
 }

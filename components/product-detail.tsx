@@ -83,7 +83,7 @@ export default function ProductDetail({ product }: { product: Product }) {
                                 <RadioGroupItem value={size} id={`size-${size}`} className="peer sr-only" />
                                 <Label
                                     htmlFor={`size-${size}`}
-                                    className="flex h-10 w-full cursor-pointer items-center justify-center rounded-md border text-sm uppercase peer-data-[state=checked]:bg-primary text-white"
+                                    className="flex h-10 w-full cursor-pointer items-center justify-center rounded-md border text-sm uppercase peer-data-[state=checked]:bg-primary peer-data-[state=checked]:text-primary-foreground"
                                 >
                                     {size}
                                 </Label>

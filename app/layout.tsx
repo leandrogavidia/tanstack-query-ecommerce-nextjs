@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import { ReactNode } from "react";
 
+import ChatBotButton from "@/components/chat-bot-button"
 import Footer from "@/components/footer"
 import Header from "@/components/header"
 
@@ -125,6 +126,8 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
+
+          <ChatBotButton />
         </Providers>
       </body>
     </html>

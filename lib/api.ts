@@ -27,6 +27,12 @@ const orders: Order[] = Array.from({ length: 5 }).map((_, i) => ({
   })),
 }))
 
+export const fetchAllProducts = async (): Promise<Product[]> => {
+  let url = `${config.apiPath}/products`;
+  const { data: products } = await axios.get(url);
+  return products
+}
+
 export const fetchProducts = async ({
   page,
   limit,
@@ -34,7 +40,7 @@ export const fetchProducts = async ({
 }: {
   page: number,
   limit: number,
-  category: string
+  category?: string
 }) => {
     let url = `${config.apiPath}/products`;
 

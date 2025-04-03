@@ -19,7 +19,7 @@ export default function LoginPage() {
     const { login, register, isLoading } = useAuth()
     const router = useRouter()
     const searchParams = useSearchParams()
-    const redirect = searchParams.get("redirect") || "/"
+    const redirect = searchParams.get("redirect") || "/mi-cuenta"
 
     const [loginData, setLoginData] = useState({ email: "", password: "" })
     const [registerData, setRegisterData] = useState({ name: "", email: "", password: "" })
