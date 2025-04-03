@@ -20,3 +20,7 @@ export function formatDate(dateString: string): string {
   }).format(new Date(dateString))
 }
 
+export function capitalizarPrimeraLetra(word: string) {
+  if (!word) return word;
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}

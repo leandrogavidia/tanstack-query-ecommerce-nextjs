@@ -8,6 +8,7 @@ import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { getCategories } from "@/lib/api"
+import { capitalizarPrimeraLetra } from "@/lib/utils"
 
 
 export default function ProductFilters() {
@@ -42,7 +43,6 @@ export default function ProductFilters() {
                         </Button>
                     </CollapsibleTrigger>
                     <CollapsibleContent className="space-y-6 mt-4">
-                        {/* Categories */}
                         <div>
                             <h4 className="font-medium mb-3">Categorías</h4>
                             {isLoading ? (
@@ -69,7 +69,7 @@ export default function ProductFilters() {
                                             onClick={() => handleCategoryChange(category.id)}
                                         >
                                             <span className="mr-2">{selectedCategory === category.id && <Check className="h-4 w-4" />}</span>
-                                            {category.name}
+                                            {capitalizarPrimeraLetra(category.name)}
                                         </Button>
                                     ))}
                                 </div>
@@ -79,9 +79,7 @@ export default function ProductFilters() {
                 </Collapsible>
             </div>
 
-            {/* Desktop filters - always visible */}
             <div className="hidden md:block space-y-6">
-                {/* Categories */}
                 <div>
                     <h4 className="font-medium mb-3">Categorías</h4>
                     {isLoading ? (
@@ -108,7 +106,7 @@ export default function ProductFilters() {
                                     onClick={() => handleCategoryChange(category.id)}
                                 >
                                     <span className="mr-2">{selectedCategory === category.id && <Check className="h-4 w-4" />}</span>
-                                    {category.name}
+                                    {capitalizarPrimeraLetra(category.name)}
                                 </Button>
                             ))}
                         </div>

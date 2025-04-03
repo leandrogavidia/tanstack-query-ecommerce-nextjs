@@ -32,12 +32,12 @@ export default function ProductCard({ product }: { product: Product }) {
         <Card className="overflow-hidden group">
             <div className="relative aspect-square overflow-hidden">
                 <Link href={`/productos/${product.id}`}>
-                    <div className="relative h-full w-full">
+                    <div className="relative h-full w-full bg-white">
                         <Image
                             src={product.image || "/placeholder.svg"}
                             alt={product.title}
                             fill
-                            className={`object-contain w-full h-auto transition-all duration-300 group-hover:scale-105 ${isLoading ? "blur-sm" : "blur-0"
+                            className={`p-4 object-contain w-full h-auto transition-all duration-300 group-hover:scale-105 ${isLoading ? "blur-sm" : "blur-0"
                                 }`}
                             onLoad={() => setIsLoading(false)}
                         />

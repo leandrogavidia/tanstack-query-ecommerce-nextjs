@@ -30,7 +30,7 @@ export default function ChatBot({ embedded = false, className }: ChatBotProps) {
     const messagesEndRef = useRef<HTMLDivElement>(null)
     const pathname = usePathname()
 
-    const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
+    const { messages, input, handleInputChange, handleSubmit, isLoading, append } = useChat({
         initialMessages: [
             {
                 id: "1",
@@ -53,6 +53,8 @@ export default function ChatBot({ embedded = false, className }: ChatBotProps) {
     if (!isMounted) {
         return null
     }
+
+    console.log(messages.length)
 
     const chatWindow = (
         <Card
@@ -126,7 +128,7 @@ export default function ChatBot({ embedded = false, className }: ChatBotProps) {
                 </div>
             </ScrollArea>
 
-            <CardFooter className="p-3 pt-0 border-t">
+            <CardFooter className="p-3 pt-0 border-t flex flex-col justify-center items-center gap-y-4">
                 <form onSubmit={handleSubmit} className="flex w-full items-center space-x-2">
                     <Input
                         id="prompt"
@@ -142,6 +144,13 @@ export default function ChatBot({ embedded = false, className }: ChatBotProps) {
                         <span className="sr-only">Enviar</span>
                     </Button>
                 </form>
+                {
+                    messages.length === 1 && (
+                        <Button variant="secondary" size="sm" className="h-12 w-full" onClick={() => append({ role: "user", content: "¿Qué productos electrónicos venden?" })}>
+                            ¿Qué productos electrónicos venden?
+                        </Button>
+                    )
+                }
             </CardFooter>
         </Card>
     )

@@ -42,7 +42,7 @@ export default function ProductDetail({ product }: { product: Product }) {
         <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-4">
                 <div className="relative aspect-square overflow-hidden rounded-lg border bg-white">
-                    <Image src={product.image || "/placeholder.svg"} alt={product.title} fill className="object-contain" priority />
+                    <Image src={product.image || "/placeholder.svg"} alt={product.title} fill className="object-contain p-4" priority />
                 </div>
             </div>
 
@@ -137,7 +137,7 @@ export default function ProductDetail({ product }: { product: Product }) {
                     <TabsContent value="shipping" className="pt-4">
                         <div className="space-y-4">
                             <p>
-                                Envío gratuito en pedidos superiores a 50€. Entrega en 24/48h en península. Consulta condiciones para
+                                Envío gratuito en pedidos superiores a 50$. Entrega en 24/48h en península. Consulta condiciones para
                                 envíos a islas y extranjero.
                             </p>
                             <p>Devoluciones gratuitas en un plazo de 30 días desde la recepción del pedido.</p>
