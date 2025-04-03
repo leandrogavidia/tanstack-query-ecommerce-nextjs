@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { config } from "@/lib/config"
 import { cn } from "@/lib/utils"
 
 
@@ -153,7 +154,7 @@ export default function ChatBot({ embedded = false, className }: ChatBotProps) {
         <>
             <Button
                 onClick={() => setIsOpen(true)}
-                className="fixed bottom-4 right-4 h-14 w-14 rounded-full shadow-lg"
+                className={cn("fixed h-12 w-12 rounded-full shadow-lg", config.analyticsTools ? "bottom-20 right-3" : "bottom-4 right-4")}
                 aria-label="Abrir chat"
             >
                 <MessageSquare className="h-6 w-6" />

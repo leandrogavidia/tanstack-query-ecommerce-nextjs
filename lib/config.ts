@@ -1,8 +1,9 @@
-if (!process.env.NEXT_PUBLIC_API_PATH) {
-    throw new Error("Missing enviroment variables.")
+if (!process.env.NEXT_PUBLIC_API_PATH || !process.env.NEXT_PUBLIC_BASE_URL) {
+    throw new Error("Missing enviroment variables, please check .env.example file.")
 }
 
 export const config = {
     apiPath: process.env.NEXT_PUBLIC_API_PATH,
-    reactQueryDevtools: process.env.NEXT_PUBLIC_REACT_QUERY_DEVTOOLS === "true"
+    baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
+    analyticsTools: process.env.NEXT_PUBLIC_ANALYTICS_TOOLS === "true",
 }

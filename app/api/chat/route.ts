@@ -2,11 +2,11 @@ import { openai } from "@ai-sdk/openai";
 import { convertToCoreMessages, streamText } from "ai"
 
 import { fetchAllProducts } from "@/lib/api";
+import { config } from "@/lib/config";
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || "";
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "";
 
-if (!OPENAI_API_KEY || !BASE_URL) {
+if (!OPENAI_API_KEY) {
     throw new Error("Missing environment variables, check the .env.example file");
 }
 
@@ -39,7 +39,7 @@ export async function POST(req: Request) {
 
           Siempre reemplaza el simbolo € a $ sin cambiar el valor de price.
 
-          Añadele el enlace directo a cada producto, la ruta sería ${BASE_URL}/productos/<product-id>
+          Añadele el enlace directo a cada producto, la ruta sería ${config.baseUrl}/productos/<product-id>
           `,
           maxTokens: 1024,
           temperature: 0.7,

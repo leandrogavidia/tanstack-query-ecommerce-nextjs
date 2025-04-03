@@ -4,6 +4,8 @@ import { ReactNode } from "react";
 import ChatBotButton from "@/components/chat-bot-button"
 import Footer from "@/components/footer"
 import Header from "@/components/header"
+import PerformanceAnalytics from "@/components/performance-analytics"
+import PerformanceMonitor from "@/components/performance-monitor"
 
 import Providers from './providers';
 
@@ -126,7 +128,8 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
-
+          <PerformanceAnalytics />
+          <PerformanceMonitor />
           <ChatBotButton />
         </Providers>
       </body>
