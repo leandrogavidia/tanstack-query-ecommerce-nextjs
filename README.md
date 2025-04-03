@@ -12,6 +12,10 @@ NextStore es una plataforma de e-commerce moderna desarrollada con Next.js, Reac
 - Node.js 18.18.0 o superior
 - npm o yarn
 
+### Notas
+
+En la ruta `/login` el login funciona con cualquier correo y contraseña.
+
 ### Pasos para Instalación
 
 1. **Clonar el repositorio**
