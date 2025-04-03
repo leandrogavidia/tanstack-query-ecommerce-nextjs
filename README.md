@@ -4,7 +4,7 @@ NextStore es una plataforma de e-commerce moderna desarrollada con Next.js, Reac
 
 ## 🌐 Demo
 
-[Ver Demo](https://tu-url-de-vercel.vercel.app)
+[Ver Demo](https://tanstack-query-ecommerce-nextjs-22or.vercel.app)
 
 ## 🚀 Instrucciones para Ejecutar Localmente
 
