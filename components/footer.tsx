@@ -22,17 +22,17 @@ export default function Footer() {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/ofertas" className="text-muted-foreground hover:text-foreground transition-colors">
+                                <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
                                     Ofertas
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/categorias" className="text-muted-foreground hover:text-foreground transition-colors">
+                                <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
                                     Categorías
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/envios" className="text-muted-foreground hover:text-foreground transition-colors">
+                                <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
                                     Envíos
                                 </Link>
                             </li>
@@ -43,23 +43,23 @@ export default function Footer() {
                         <h4 className="font-medium mb-4">Empresa</h4>
                         <ul className="space-y-2">
                             <li>
-                                <Link href="/sobre-nosotros" className="text-muted-foreground hover:text-foreground transition-colors">
+                                <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
                                     Sobre nosotros
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/contacto" className="text-muted-foreground hover:text-foreground transition-colors">
+                                <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
                                     Contacto
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">
+                                <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
                                     Blog
                                 </Link>
                             </li>
                             <li>
                                 <Link
-                                    href="/trabaja-con-nosotros"
+                                    href="#"
                                     className="text-muted-foreground hover:text-foreground transition-colors"
                                 >
                                     Trabaja con nosotros
@@ -72,17 +72,17 @@ export default function Footer() {
                         <h4 className="font-medium mb-4">Legal</h4>
                         <ul className="space-y-2">
                             <li>
-                                <Link href="/terminos" className="text-muted-foreground hover:text-foreground transition-colors">
+                                <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
                                     Términos y condiciones
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/privacidad" className="text-muted-foreground hover:text-foreground transition-colors">
+                                <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
                                     Política de privacidad
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/cookies" className="text-muted-foreground hover:text-foreground transition-colors">
+                                <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
                                     Política de cookies
                                 </Link>
                             </li>

@@ -14,7 +14,7 @@ export default function ProductCatalog() {
     const searchParams = useSearchParams()
 
     const category = searchParams.get('categoria') || ""
-    const page = Number(searchParams.get('page')) || 1
+    const page = Number(searchParams.get('pagina')) || 1
 
     const limit = 8
 

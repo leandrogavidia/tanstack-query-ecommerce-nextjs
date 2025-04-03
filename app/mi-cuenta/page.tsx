@@ -1,7 +1,7 @@
 "use client"
 
-import { useRouter } from "next/navigation"
-import { useEffect } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
+import { useEffect, useState } from "react"
 
 
 import FavoriteProducts from "@/components/favorite-products"
@@ -14,12 +14,29 @@ import UserProfile from "@/components/user-profile"
 export default function AccountPage() {
     const { user, isAuthenticated, isLoading } = useAuth()
     const router = useRouter()
+    const searchParams = useSearchParams()
+    const tabParam = searchParams.get("tab")
+    const [activeTab, setActiveTab] = useState("pedidos")
+
+    useEffect(() => {
+        if (tabParam && ["pedidos", "favoritos", "perfil"].includes(tabParam)) {
+            setActiveTab(tabParam)
+        }
+    }, [tabParam])
 
     useEffect(() => {
         if (!isLoading && !isAuthenticated) {
-            router.push("/login?redirect=/mi-cuenta")
+            router.push("/login?redirect=/mi-cuenta?tab=pedidos")
         }
     }, [isLoading, isAuthenticated, router])
+
+    const handleTabChange = (value: string) => {
+        setActiveTab(value)
+
+        const params = new URLSearchParams(searchParams.toString())
+        params.set("tab", value)
+        router.push(`/mi-cuenta?${params.toString()}`)
+    }
 
     if (isLoading) {
         return (
@@ -46,22 +63,22 @@ export default function AccountPage() {
                 </Card>
             </div>
 
-            <Tabs defaultValue="orders">
+            <Tabs value={activeTab} onValueChange={handleTabChange}>
                 <TabsList className="mb-8">
-                    <TabsTrigger value="orders">Mis Pedidos</TabsTrigger>
-                    <TabsTrigger value="favorites">Favoritos</TabsTrigger>
-                    <TabsTrigger value="profile">Perfil</TabsTrigger>
+                    <TabsTrigger value="pedidos">Mis Pedidos</TabsTrigger>
+                    <TabsTrigger value="favoritos">Favoritos</TabsTrigger>
+                    <TabsTrigger value="perfil">Perfil</TabsTrigger>
                 </TabsList>
 
-                <TabsContent value="orders">
+                <TabsContent value="pedidos">
                     <OrderHistory />
                 </TabsContent>
 
-                <TabsContent value="favorites">
+                <TabsContent value="favoritos">
                     <FavoriteProducts />
                 </TabsContent>
 
-                <TabsContent value="profile">
+                <TabsContent value="perfil">
                     <UserProfile />
                 </TabsContent>
             </Tabs>

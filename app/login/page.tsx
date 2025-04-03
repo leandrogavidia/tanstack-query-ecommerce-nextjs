@@ -55,7 +55,7 @@ export default function LoginPage() {
 
                     <TabsContent value="login">
                         <form onSubmit={handleLogin}>
-                            <CardHeader>
+                            <CardHeader className="mb-4">
                                 <CardTitle>Iniciar Sesión</CardTitle>
                                 <CardDescription>Ingresa tus credenciales para acceder a tu cuenta</CardDescription>
                             </CardHeader>
@@ -83,7 +83,7 @@ export default function LoginPage() {
                                 </div>
                             </CardContent>
                             <CardFooter>
-                                <Button type="submit" className="w-full" disabled={isLoading}>
+                                <Button type="submit" className="w-full text-white mt-5" disabled={isLoading}>
                                     {isLoading ? "Cargando..." : "Iniciar Sesión"}
                                 </Button>
                             </CardFooter>
@@ -92,7 +92,7 @@ export default function LoginPage() {
 
                     <TabsContent value="register">
                         <form onSubmit={handleRegister}>
-                            <CardHeader>
+                            <CardHeader className="mb-4">
                                 <CardTitle>Crear Cuenta</CardTitle>
                                 <CardDescription>Regístrate para comenzar a comprar</CardDescription>
                             </CardHeader>
@@ -130,7 +130,7 @@ export default function LoginPage() {
                                 </div>
                             </CardContent>
                             <CardFooter>
-                                <Button type="submit" className="w-full" disabled={isLoading}>
+                                <Button type="submit" className="w-full text-white mt-5" disabled={isLoading}>
                                     {isLoading ? "Cargando..." : "Registrarse"}
                                 </Button>
                             </CardFooter>

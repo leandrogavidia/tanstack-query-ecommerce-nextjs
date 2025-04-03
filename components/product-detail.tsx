@@ -17,7 +17,7 @@ import type { Product } from "@/lib/types"
 
 
 export default function ProductDetail({ product }: { product: Product }) {
-    const [selectedSize, setSelectedSize] = useState<string>("m")
+    const [selectedSize, setSelectedSize] = useState("m")
     const { addItem } = useCart()
 
     const addToCartMutation = useMutation({

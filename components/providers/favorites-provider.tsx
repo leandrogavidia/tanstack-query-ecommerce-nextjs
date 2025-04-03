@@ -23,7 +23,7 @@ export function FavoritesProvider({ children }: { children: React.ReactNode }) {
     const { toast } = useToast()
 
     useEffect(() => {
-        const storedFavorites = localStorage.getItem("favorites")
+        const storedFavorites = localStorage.getItem("favoritos")
         if (storedFavorites) {
             try {
                 setFavorites(JSON.parse(storedFavorites))
@@ -34,7 +34,7 @@ export function FavoritesProvider({ children }: { children: React.ReactNode }) {
     }, [])
 
     useEffect(() => {
-        localStorage.setItem("favorites", JSON.stringify(favorites))
+        localStorage.setItem("favoritos", JSON.stringify(favorites))
     }, [favorites])
 
     const toggleFavorite = (product: Product) => {

@@ -7,12 +7,14 @@ import { useState, useRef, useEffect } from "react"
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
+import MkLink from "@/components/mk-link"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { cn } from "@/lib/utils"
+
 
 import styles from "../styles/markdown.module.css";
 
@@ -93,6 +95,9 @@ export default function ChatBot({ embedded = false, className }: ChatBotProps) {
                             >
                                 <ReactMarkdown
                                     remarkPlugins={[remarkGfm]}
+                                    components={{
+                                        a: MkLink
+                                    }}
                                 >
                                     {message.content}
                                 </ReactMarkdown>

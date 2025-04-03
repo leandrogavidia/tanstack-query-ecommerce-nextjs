@@ -32,6 +32,7 @@ export default function Header() {
     const [searchQuery, setSearchQuery] = useState("")
     const [mounted, setMounted] = useState(false)
     const { isAuthenticated } = useAuth()
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -45,6 +46,10 @@ export default function Header() {
     useEffect(() => {
         setMounted(true)
     }, [])
+
+    useEffect(() => {
+        setIsMobileMenuOpen(false)
+    }, [pathname])
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault()
@@ -103,7 +108,7 @@ export default function Header() {
                             )}
 
                             <Button variant="ghost" size="icon" asChild>
-                                <Link href="/mi-cuenta?tab=favorites">
+                                <Link href="/mi-cuenta?tab=favoritos">
                                     <Heart className="h-5 w-5" />
                                     <span className="sr-only">Favoritos</span>
                                 </Link>
@@ -123,13 +128,13 @@ export default function Header() {
                             </Button>
 
                             <Button variant="ghost" size="icon" asChild>
-                                <Link href={isAuthenticated ? "/mi-cuenta" : "/login"}>
+                                <Link href={isAuthenticated ? "/mi-cuenta?tab=perfil" : "/login"}>
                                     <User className="h-5 w-5" />
                                     <span className="sr-only">Mi cuenta</span>
                                 </Link>
                             </Button>
 
-                            <Sheet>
+                            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                                 <SheetTrigger asChild>
                                     <Button variant="ghost" size="icon" className="md:hidden">
                                         <Menu className="h-5 w-5" />
@@ -137,7 +142,7 @@ export default function Header() {
                                     </Button>
                                 </SheetTrigger>
                                 <SheetContent side="left" className="w-[300px] sm:w-[350px]">
-                                    <MobileNav />
+                                    <MobileNav onNavigate={() => setIsMobileMenuOpen(false)} />
                                 </SheetContent>
                             </Sheet>
                         </div>

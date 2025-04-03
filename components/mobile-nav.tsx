@@ -1,45 +1,42 @@
 "use client"
 
 
-import { Search, Sun, Moon } from "lucide-react"
+import { Search } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useTheme } from "next-themes"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 
 
+import { useAuth } from "./providers/use-auth"
+
 import type React from "react"
 
 const navItems = [
     { label: "Inicio", href: "/" },
     { label: "Productos", href: "/productos" },
-    { label: "Categorías", href: "/categorias" },
-    { label: "Ofertas", href: "/ofertas" },
 ]
 
-export default function MobileNav() {
-    const pathname = usePathname()
-    const { setTheme, resolvedTheme } = useTheme()
-    const [searchQuery, setSearchQuery] = useState("")
-    const [mounted, setMounted] = useState(false)
+interface MobileNavProps {
+    onNavigate?: () => void;
+}
 
-    // After mounting, we can safely show the theme toggle
-    useEffect(() => {
-        setMounted(true)
-    }, [])
+export default function MobileNav({ onNavigate }: MobileNavProps) {
+    const pathname = usePathname()
+    const [searchQuery, setSearchQuery] = useState("")
+    const { isAuthenticated, logout } = useAuth()
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault()
-        // Implement search functionality
         console.log("Search for:", searchQuery)
     }
 
-    const toggleTheme = () => {
-        setTheme(resolvedTheme === "dark" ? "light" : "dark")
+    const handleLogout = () => {
+        logout()
+        if (onNavigate) onNavigate()
     }
 
     return (
@@ -48,14 +45,6 @@ export default function MobileNav() {
                 <Link href="/" className="flex items-center space-x-2">
                     <span className="text-xl font-bold">NextStore</span>
                 </Link>
-
-                {/* Theme Toggle for Mobile */}
-                {mounted && (
-                    <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Cambiar tema">
-                        {resolvedTheme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-                        <span className="sr-only">Cambiar tema</span>
-                    </Button>
-                )}
             </div>
 
             <Separator />
@@ -98,8 +87,8 @@ export default function MobileNav() {
                 <ul className="space-y-2">
                     <li>
                         <Link
-                            href="/mi-cuenta?tab=favorites"
-                            className={`flex items-center py-2 px-3 rounded-md ${pathname === "/mi-cuenta" && pathname.includes("favorites")
+                            href="/mi-cuenta?tab=favoritos"
+                            className={`flex items-center py-2 px-3 rounded-md ${pathname === "/mi-cuenta" && pathname.includes("favoritos")
                                 ? "bg-primary text-primary-foreground"
                                 : "hover:bg-muted"
                                 }`}
@@ -109,8 +98,8 @@ export default function MobileNav() {
                     </li>
                     <li>
                         <Link
-                            href="/mi-cuenta"
-                            className={`flex items-center py-2 px-3 rounded-md ${pathname === "/mi-cuenta" && !pathname.includes("favorites")
+                            href="/mi-cuenta?tab=perfil"
+                            className={`flex items-center py-2 px-3 rounded-md ${pathname === "/mi-cuenta" && !pathname.includes("favoritos")
                                 ? "bg-primary text-primary-foreground"
                                 : "hover:bg-muted"
                                 }`}
@@ -120,6 +109,22 @@ export default function MobileNav() {
                     </li>
                 </ul>
             </nav>
+
+            <Separator />
+
+            <div className="p-4">
+                {isAuthenticated ? (
+                    <Button variant="outline" className="w-full" onClick={handleLogout}>
+                        Cerrar sesión
+                    </Button>
+                ) : (
+                    <Button asChild className="w-full">
+                        <Link href="/login" onClick={onNavigate}>
+                            Iniciar sesión
+                        </Link>
+                    </Button>
+                )}
+            </div>
         </div>
     )
 }
