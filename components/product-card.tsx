@@ -37,7 +37,7 @@ export default function ProductCard({ product }: { product: Product }) {
                             src={product.image || "/placeholder.svg"}
                             alt={product.title}
                             fill
-                            className={`object-contain transition-all duration-300 group-hover:scale-105 ${isLoading ? "blur-sm" : "blur-0"
+                            className={`object-contain w-full h-auto transition-all duration-300 group-hover:scale-105 ${isLoading ? "blur-sm" : "blur-0"
                                 }`}
                             onLoad={() => setIsLoading(false)}
                         />

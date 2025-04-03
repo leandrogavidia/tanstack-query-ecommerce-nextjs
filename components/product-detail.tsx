@@ -40,14 +40,12 @@ export default function ProductDetail({ product }: { product: Product }) {
 
     return (
         <div className="grid md:grid-cols-2 gap-8">
-            {/* Product Images */}
             <div className="space-y-4">
-                <div className="relative aspect-square overflow-hidden rounded-lg border">
-                    <Image src={product.image || "/placeholder.svg"} alt={product.title} fill className="object-cover" priority />
+                <div className="relative aspect-square overflow-hidden rounded-lg border bg-white">
+                    <Image src={product.image || "/placeholder.svg"} alt={product.title} fill className="object-contain" priority />
                 </div>
             </div>
 
-            {/* Product Info */}
             <div className="space-y-6">
                 <div>
                     <h1 className="text-3xl font-bold">{product.title}</h1>
@@ -69,9 +67,6 @@ export default function ProductDetail({ product }: { product: Product }) {
 
                 <p className="text-muted-foreground">{product.description}</p>
 
-
-
-                {/* Size Selection */}
                 <div className="space-y-4">
                     <div className="flex justify-between">
                         <span className="text-sm font-medium">Talla</span>
