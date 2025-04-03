@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NextStore - Plataforma de E-commerce
 
-## Getting Started
+NextStore es una plataforma de e-commerce moderna desarrollada con Next.js, React Query y Tailwind CSS. Ofrece una experiencia de compra fluida y atractiva con características avanzadas como carrito de compras, sistema de favoritos, autenticación de usuarios, y optimizaciones de rendimiento.
 
-First, run the development server:
+## 🌐 Demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+[Ver Demo](https://tu-url-de-vercel.vercel.app)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Instrucciones para Ejecutar Localmente
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Requisitos Previos
+- Node.js 18.18.0 o superior
+- npm o yarn
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Pasos para Instalación
 
-## Learn More
+1. **Clonar el repositorio**
+    ```bash
+    git clone <repo-url>
 
-To learn more about Next.js, take a look at the following resources:
+    cd nextstore
+    ```
+2. **Instalar dependencias**
+    ```
+    npm install
+    ```
+3. **Configurar archivo .env**
+    ```
+    NEXT_PUBLIC_API_PATH="https://fakestoreapi.com" # API url para obtención de productos para el E-Commerce
+    NEXT_PUBLIC_ANALYTICS_TOOLS="true" # Herramientas de analítica activadas
+    NEXT_PUBLIC_BASE_URL="http://localhost:3000" # URL base para el E-Commerce
+    OPENAI_API_KEY="<your-api-key>" # API Key de OpenAI para el uso del chatbot
+    ```
+4. **Ejecutar el proyecto**
+    ```
+    npm run dev
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📋 Características Implementadas
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Funcionalidades Principales
+- **Catálogo de Productos**: Visualización de productos con filtrado por categorías y paginación
+- **Detalles de Producto**: Vista detallada con imágenes, descripción, selección de tallas y colores
+- **Carrito de Compras**: Añadir, eliminar y actualizar productos en el carrito
+- **Sistema de Favoritos**: Guardar productos favoritos para futuras compras
+- **Autenticación de Usuarios**: Registro e inicio de sesión
+- **Perfil de Usuario**: Gestión de información personal y preferencias
+- **Historial de Pedidos**: Visualización de pedidos anteriores
+- **Diseño Responsivo**: Experiencia optimizada para dispositivos móviles y escritorio
+- **Tema Claro/Oscuro**: Cambio de tema según preferencia del usuario
+- **Chatbot de IA**: Asistente virtual para ayudar a los usuarios
 
-## Deploy on Vercel
+### Optimizaciones Técnicas
+- **React Query**: Gestión eficiente de estado y caché para datos del servidor
+- **Prefetching**: Precarga de datos para mejorar la experiencia de navegación
+- **Lazy Loading**: Carga diferida de componentes y recursos
+- **Memoización**: Prevención de renderizados innecesarios
+- **Optimización de Imágenes**: Carga progresiva y formatos optimizados
+- **Análisis de Rendimiento**: Monitoreo de Web Vitals y métricas de rendimiento
+- **Virtualización**: Renderizado eficiente de listas largas
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ⚙ Decisiones técnicas y arquitectónicas
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Para este proyecto, se empleó la suite completa de servicios y productos ofrecidos por Vercel, con el objetivo de optimizar el rendimiento y la experiencia del usuario. Las herramientas y tecnologías utilizadas fueron las siguientes:
+
+* **Next.js (versión 15) con App Router**: Se seleccionó este framework para aprovechar sus características modernas y optimizaciones web.
+* **Tailwind CSS (versión 4)**: Se implementó para beneficiarse de las mejoras recientes en rendimiento y experiencia de desarrollo.
+* **React Query**: Se utilizó para gestionar de manera eficiente las solicitudes asíncronas en la aplicación web.
+* **Shadcn UI**: Se integró para agilizar la maquetación y asegurar un alto nivel de responsividad.
+* **Vercel v0**: Esta herramienta fue fundamental para tomar decisiones técnicas informadas y corregir errores durante el desarrollo.
+* **Vercel AI SDK**: Se implementó para crear un chatbot conectado a la API de FakeStore, proporcionando así una experiencia personalizada a los usuarios.
+* **Servicio de despliegue de Vercel**: Finalmente, se utilizó este servicio para desplegar la aplicación web de manera eficiente."
+
+## ⚙ Retos enfrentados
+
+Los principales desafíos durante el desarrollo se centraron en la gestión y persistencia de datos, buscando mantener un rendimiento óptimo en todo momento.
+
+Otro reto significativo fue la escalabilidad del proyecto, asegurando una arquitectura robusta sin comprometer las ventajas de cada herramienta utilizada.
+
+Para superar estos obstáculos, se recurrió a la documentación oficial de cada tecnología y se utilizaron herramientas de inteligencia artificial para obtener diversas perspectivas y soluciones.
